@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mapa Seleção</title>
+  <style>
+    body {
+      margin: 0;
+      background: #c6dec5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #map {
+      width: 50%;
+      max-width: 1000px;
+      height: 80vh;
+      margin-top: 20px;
+    }
+
+    /* Oculta marca d'água do SimpleMaps */
+    #simplemaps_watermark,
+    #simplemaps_watermark_link {
+      display: none !important;
+    }
+
+    /* Legenda personalizada */
+    #legenda {
+      position: absolute;
+      left: 25%;
+      bottom: 28%;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 10;
+    }
+
+    .item-legenda {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+      max-width: 200px;
+      gap: 12px; /* controla o espaço entre o ícone e o texto */
+    }
+
+    .texto {
+      color: #333;
+      word-break: break-word;
+      white-space: normal;
+    }
+
+    /* Estilo visual dos ícones */
+    .icone {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .quadrado.estado {
+      border-radius: 2px;
+      background-color: #2db195;
+    }
+
+    .circulo.amarelo {
+      border-radius: 50%;
+      background-color: #e2e47b;
+    }
+
+    .circulo.estado-pratica {
+      border-radius: 50%;
+      background-color: #f69e25;
+    }
+
+    .popup-custom {
+        position: absolute;
+        background-color: #2d3e44;
+        color: white;
+        padding: 20px 24px;
+        border-radius: 16px;
+        max-width: 340px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        z-index: 9999;
+        display: none;
+    }
+
+    .popup-custom h3 {
+        margin: 0;
+        padding-bottom: 4px;
+        font-size: 18px;
+        color: #2db195;
+    }
+
+    .popup-custom p {
+        margin: 0 0 12px 0;
+    }
+
+    .popup-custom p:last-of-type {
+        margin-bottom: 0;
+    }
+
+
+    .popup-custom .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        cursor: pointer;
+        color: #e2e47b;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <div id="legenda">
+    <div class="item-legenda">
+      <div class="icone quadrado estado"></div>
+      <span class="texto">Estados participantes do GA</span>
+    </div>
+    <div class="item-legenda">
+      <div class="icone circulo municipio"></div>
+      <span class="texto">Municípios que implementaram a prova prática</span>
+    </div>
+    <div class="item-legenda">
+      <div class="icone circulo estado-pratica"></div>
+      <span class="texto">Estados que implementaram a prova prática</span>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <!-- Acre -->
+<div id="popup-acre" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-acre')">×</span>
+  <h3>Acre</h3>
+  <p>O Acre lançou seu primeiro concurso com prova prática em 2024. A previsão de homologação é para o segundo semestre de 2025.</p>
+</div>
+
+<!-- Amazonas -->
+<div id="popup-am" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-am')">×</span>
+  <h3>Amazonas</h3>
+  <p>Amazonas confirmou o lançamento de concurso com prova prática em 2025.</p>
+</div>
+
+<!-- Ceará -->
+<div id="popup-ce" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-ce')">×</span>
+  <h3>Ceará</h3>
+  <p>1ª rede estadual a lançar concurso público com prova prática, em 2008. Desde então, consolidou a política lançando mais 2 concursos com prova prática, em 2013 e 2018.</p>
+  <br />
+  <h3>Sobral</h3>
+  <p>Primeira rede de educação brasileira a realizar um concurso com prova prática, em 2007. Desde então, realizou mais dois concursos com prova prática, em 2010 e 2016.</p>
+</div>
+
+<!-- Mato Grosso -->
+<div id="popup-mt" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-mt')">×</span>
+  <h3>Mato Grosso</h3>
+  <p>
+    A rede lançou um processo seletivo simplificado com prova prática no ano de 2021 e em 2025 foi publicado o primeiro concurso público com prova prática. 
+    Além disso, o concurso inova na abordagem do conhecimento pedagógico solicitado, que será utilizado tanto na prova objetiva, quanto na prova prática.
+  </p>
+</div>
+
+<!-- Paraíba -->
+<div id="popup-pb" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-pb')">×</span>
+  <h3>Paraíba</h3>
+  <p>Paraíba executou processo seletivo com prova prática no ano de 2023.</p>
+</div>
+
+<!-- Piauí / Teresina -->
+<div id="popup-pi" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-pi')">×</span>
+  <h3>Teresina</h3>
+  <p>Teresina executou concurso com prova prática em 2017.</p>
+</div>
+
+<!-- Pernambuco -->
+<div id="popup-pe" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-pe')">×</span>
+  <h3>Recife</h3>
+  <p>Recife executou concurso com prova prática em 2023.</p>
+</div>
+
+<!-- Paraná / Curitiba -->
+<div id="popup-pr" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-pr')">×</span>
+  <h3>Paraná</h3>
+  <p>
+    A rede do Paraná realizou seu primeiro concurso público com prova prática em 2013. Desde então, executou processos seletivos simplificados com prova prática em 2020 e 2022 e outro concurso público com prova prática em 2023.
+  </p>
+  <br />
+  <h3>Curitiba</h3>
+  <p>Curitiba executou concurso com prova prática em 2019.</p>
+</div>
+
+<!-- Sergipe -->
+<div id="popup-se" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-se')">×</span>
+  <h3>Sergipe</h3>
+  <p>A rede confirmou o lançamento de concurso com prova prática em 2025.</p>
+</div>
+
+<!-- São Paulo -->
+<div id="popup-sp" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-sp')">×</span>
+  <h3>São Paulo</h3>
+  <p>São Paulo executou concurso com prova prática em 2023.</p>
+</div>
+
+<!-- Rio de Janeiro -->
+<div id="popup-rj" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-rj')">×</span>
+  <h3>Rio de Janeiro</h3>
+  <p>O município do Rio de Janeiro realizou concurso com prova prática em 2013.</p>
+</div> 
+
+  <!-- Scripts do mapa -->
+  <script src="mapdata.js"></script>
+  <script src="countrymap.js"></script>
+
+  <script>
+  function abrirPopup(id) {
+    fecharTodosPopups();
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.display = "block";
+      el.style.left = "50%";
+      el.style.top = "50%";
+      el.style.transform = "translate(-50%, -50%)";
+    }
+  }
+
+  function fecharPopup(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  }
+
+  function fecharTodosPopups() {
+    const popups = document.querySelectorAll('.popup-custom');
+    popups.forEach(p => p.style.display = 'none');
+  }
+</script>
+
+<script>
+  let cliqueInterno = false;
+
+  function abrirPopup(id) {
+    cliqueInterno = true;
+    setTimeout(() => cliqueInterno = false, 0); // ← garante reset após execução
+    fecharTodosPopups();
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.display = "block";
+      el.style.left = "50%";
+      el.style.top = "50%";
+      el.style.transform = "translate(-50%, -50%)";
+    }
+  }
+
+  function fecharPopup(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  }
+
+  function fecharTodosPopups() {
+    const popups = document.querySelectorAll('.popup-custom');
+    popups.forEach(p => p.style.display = 'none');
+  }
+
+  document.addEventListener("click", function (event) {
+    const isInsidePopup = event.target.closest(".popup-custom");
+    const isLegenda = event.target.closest("#legenda");
+
+    if (!cliqueInterno && !isInsidePopup && !isLegenda) {
+      fecharTodosPopups();
+    }
+  });
+</script>
+    
+</body>
+</html>

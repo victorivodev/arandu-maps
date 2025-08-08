@@ -6,7 +6,7 @@ var simplemaps_countrymap_mapdata={
     background_transparent: "yes",
     border_color: "#ffffff",
     state_description: "",
-    state_color: "#2db195",
+    state_color: "#96d8ca",
     state_hover_color: "#484d50",
     state_url: "",
     border_size: 1.5,
@@ -14,7 +14,7 @@ var simplemaps_countrymap_mapdata={
     all_states_zoomable: "no",
     location_description: "",
     location_url: "",
-    location_color: "#f69e25",
+    location_color: "#e2e47b",
     location_opacity: "0.85",
     location_hover_opacity: 1,
     location_size: "12",
@@ -87,14 +87,16 @@ var simplemaps_countrymap_mapdata={
     },
     BRCE: {
       name: "Ceará",
-      inactive: "no"
+      inactive: "no",
+      url: "javascript:abrirPopup('popup-ce')"
     },
     BRDF: {
       name: "Distrito Federal"
     },
     BRES: {
       name: "Espírito Santo",
-      inactive: "no"
+      inactive: "no",
+      url: "javascript:abrirPopup('popup-es')"
     },
     BRGO: {
       name: "Goiás"
@@ -121,11 +123,13 @@ var simplemaps_countrymap_mapdata={
       name: "Pernambuco"
     },
     BRPI: {
-      name: "Piauí"
+      name: "Piauí",
+      inactive: "no"
     },
     BRPR: {
       name: "Paraná",
-      inactive: "no"
+      inactive: "no",
+      url: "javascript:abrirPopup('popup-pr')"
     },
     BRRJ: {
       name: "Rio de Janeiro"
@@ -140,11 +144,13 @@ var simplemaps_countrymap_mapdata={
       name: "Roraima"
     },
     BRRS: {
-      name: "Rio Grande do Sul"
+      name: "Rio Grande do Sul",
+      inactive: "no"
     },
     BRSC: {
       name: "Santa Catarina",
-      inactive: "no"
+      inactive: "no",
+      url: "javascript:abrirPopup('popup-sc')"
     },
     BRSE: {
       name: "Sergipe"
@@ -160,22 +166,49 @@ var simplemaps_countrymap_mapdata={
     "0": {
       name: "Vitória",
       lat: "-20.3155",
-      lng: "-40.3128"
+      lng: "-40.3128",
+      color: "#405159"
     },
     "1": {
       lat: "-26.3044",
       lng: "-48.8487",
-      name: "Joinville"
+      name: "Joinville",
+      url: "javascript:abrirPopup('popup-sc')"
     },
     "2": {
       name: "Sobral",
       lat: "-3.6894",
-      lng: "-40.3482"
+      lng: "-40.3482",
+      url: "javascript:abrirPopup('popup-ce')"
     },
     "3": {
       name: "Curitiba",
       lat: "-25.4284",
       lng: "-49.2733"
+    },
+    "4": {
+      name: "Blumenau",
+      lat: "-26.9156",
+      lng: "-49.0706",
+      color: "#405159"
+    },
+    "5": {
+      name: "Maringá",
+      lat: "-23.4205",
+      lng: "-51.9331",
+      color: "#405159",
+      url: "javascript:abrirPopup('popup-pr')"
+    },
+    "6": {
+      name: "Parnaíba",
+      lat: "-2.9057",
+      lng: "-41.7754",
+      color: "#405159"
+    },
+    "7": {
+      name: "Porto Alegre",
+      lat: "-30.033056",
+      lng: "-51.23"
     }
   },
   labels: {
