@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Mapa Seleção</title>
+  <title>Mapa FC</title>
   <style>
     body {
       margin: 0;
@@ -68,6 +68,11 @@
       background-color: #2db195;
     }
 
+    .circulo.redes {
+      border-radius: 50%;
+      background-color: #289b83;
+    }
+
     .circulo.municipio {
       border-radius: 50%;
       background-color: #e2e47b;
@@ -117,12 +122,65 @@
         font-weight: bold;
         font-size: 18px;
     }
+
+    /* Botão amarelo Saiba Mais */
+    .btn-saiba-mais {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px; /* espaço entre texto e seta */
+        background-color: #e2e47b; /* amarelo */
+        color: #2d3e44; /* cor do texto */
+        font-weight: bold;
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none; /* remove sublinhado se for <a> */
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-saiba-mais:hover {
+        background-color: #d4d65f; /* tom mais escuro no hover */
+    }
+
+    .btn-saiba-mais .arrow {
+        font-size: 14px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .btn-saiba-mais:hover .arrow {
+        transform: translateX(3px);
+    }
+
+    /* tenta pelos IDs oficiais da watermark */
+    #simplemaps_watermark,
+    #simplemaps_watermark_link {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* tentativa alternativa: o trial usa esse title */
+    a[title="For evaluation use only."] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* se a marca ficar DENTRO do container do mapa */
+    #map a[href*="simplemaps.com"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
     
   </style>
 </head>
 <body>
 
   <div id="legenda">
+    <div class="item-legenda">
+      <div class="icone circulo redes"></div>
+      <span class="texto">Redes Municipais das Capitais participantes do GA</span>
+    </div>
     <div class="item-legenda">
       <div class="icone circulo municipio"></div>
       <span class="texto">Apoio na implementação</span>
@@ -139,28 +197,40 @@
 <div id="popup-es" class="popup-custom">
   <span class="close-btn" onclick="fecharPopup('popup-es')">×</span>
   <h3>Vitória (ES)</h3>
-  <p>Formação Continuada em Vitória (ES) - Estratégias para a implementação de uma política eficaz.</p>
+  <p>Formação Continuada em Vitória (ES) - Estratégias para a implementação de uma política eficaz.</p><br>
+  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    Saiba mais <span class="arrow">➜</span>
+  </a>
 </div>
 
 <!-- Santa Catarina -->
 <div id="popup-sc" class="popup-custom">
   <span class="close-btn" onclick="fecharPopup('popup-sc')">×</span>
   <h3>Joinville (SC)</h3>
-  <p>Boas práticas de implementação de Formação Continuada - Como organizar uma formação continuada de professores em uma rede de ensino?</p>
+  <p>Boas práticas de implementação de Formação Continuada - Como organizar uma formação continuada de professores em uma rede de ensino?</p><br>
+  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    Saiba mais <span class="arrow">➜</span>
+  </a>
 </div>
 
 <!-- Paraná -->
 <div id="popup-pr" class="popup-custom">
   <span class="close-btn" onclick="fecharPopup('popup-pr')">×</span>
   <h3>Paraná</h3>
-  <p>A política de Formação Continuada no estado do Paraná - Formação entre pares mediada por tecnologias.</p>
+  <p>A política de Formação Continuada no estado do Paraná - Formação entre pares mediada por tecnologias.</p><br>
+  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    Saiba mais <span class="arrow">➜</span>
+  </a>
 </div>
 
 <!-- Ceará -->
 <div id="popup-ce" class="popup-custom">
   <span class="close-btn" onclick="fecharPopup('popup-ce')">×</span>
   <h3>Sobral (CE)</h3>
-  <p>A política de formação continuada de Sobral - Foco na prática docente e na aprendizagem dos estudantes.</p>
+  <p>A política de formação continuada de Sobral - Foco na prática docente e na aprendizagem dos estudantes.</p><br>
+  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    Saiba mais <span class="arrow">➜</span>
+  </a>
 </div>
 
   <!-- Scripts do mapa -->
@@ -225,6 +295,16 @@
     }
   });
 </script>
-    
+
+<script>
+  window.addEventListener('load', function () {
+    // remover por IDs comuns
+    ['simplemaps_watermark', 'simplemaps_watermark_link']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
+
+    // remover o link do trial (não remove pais com outros nós)
+    document.querySelectorAll('a[title="For evaluation use only."]').forEach(el => el.remove());
+  });
+</script>
 </body>
 </html>

@@ -117,7 +117,26 @@
         font-weight: bold;
         font-size: 18px;
     }
-    
+
+    /* tenta pelos IDs oficiais da watermark */
+#simplemaps_watermark,
+#simplemaps_watermark_link {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* tentativa alternativa: o trial usa esse title */
+a[title="For evaluation use only."] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* se a marca ficar DENTRO do container do mapa */
+#map a[href*="simplemaps.com"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
   </style>
 </head>
 <body>
@@ -128,7 +147,7 @@
       <span class="texto">Estados participantes do GA</span>
     </div>
     <div class="item-legenda">
-      <div class="icone circulo municipio"></div>
+      <div class="icone circulo amarelo"></div>
       <span class="texto">Municípios que implementaram a prova prática</span>
     </div>
     <div class="item-legenda">
@@ -140,8 +159,8 @@
   <div id="map"></div>
 
   <!-- Acre -->
-<div id="popup-acre" class="popup-custom">
-  <span class="close-btn" onclick="fecharPopup('popup-acre')">×</span>
+<div id="popup-ac" class="popup-custom">
+  <span class="close-btn" onclick="fecharPopup('popup-ac')">×</span>
   <h3>Acre</h3>
   <p>O Acre lançou seu primeiro concurso com prova prática em 2024. A previsão de homologação é para o segundo semestre de 2025.</p>
 </div>
@@ -289,6 +308,16 @@
     }
   });
 </script>
-    
+
+<script>
+  window.addEventListener('load', function () {
+    // remover por IDs comuns
+    ['simplemaps_watermark', 'simplemaps_watermark_link']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
+
+    // remover o link do trial (não remove pais com outros nós)
+    document.querySelectorAll('a[title="For evaluation use only."]').forEach(el => el.remove());
+  });
+</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Mapa Seleção</title>
+  <title>Mapa Estágio</title>
   <style>
     body {
       margin: 0;
@@ -117,6 +117,24 @@
         font-weight: bold;
         font-size: 18px;
     }
+
+    #simplemaps_watermark,
+#simplemaps_watermark_link {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* tentativa alternativa: o trial usa esse title */
+a[title="For evaluation use only."] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* se a marca ficar DENTRO do container do mapa */
+#map a[href*="simplemaps.com"] {
+  display: none !important;
+  visibility: hidden !important;
+}
     
   </style>
 </head>
@@ -230,6 +248,17 @@
     if (!cliqueInterno && !isInsidePopup && !isLegenda) {
       fecharTodosPopups();
     }
+  });
+</script>
+
+<script>
+  window.addEventListener('load', function () {
+    // remover por IDs comuns
+    ['simplemaps_watermark', 'simplemaps_watermark_link']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
+
+    // remover o link do trial (não remove pais com outros nós)
+    document.querySelectorAll('a[title="For evaluation use only."]').forEach(el => el.remove());
   });
 </script>
 </body>

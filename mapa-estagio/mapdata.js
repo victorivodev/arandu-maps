@@ -7,14 +7,14 @@ var simplemaps_countrymap_mapdata={
     border_color: "#ffffff",
     state_description: "",
     state_color: "#88A4BC",
-    state_hover_color: "#3B729F",
+    state_hover_color: "#aaaaaa",
     state_url: "",
     border_size: 1.5,
-    all_states_inactive: "no",
+    all_states_inactive: "yes",
     all_states_zoomable: "no",
     location_description: "",
     location_url: "",
-    location_color: "#FF0067",
+    location_color: "#f69e25",
     location_opacity: "0.85",
     location_hover_opacity: 1,
     location_size: "12",
@@ -72,186 +72,152 @@ var simplemaps_countrymap_mapdata={
   state_specific: {
     BRAC: {
       name: "Acre",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRAL: {
       name: "Alagoas",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRAM: {
       name: "Amazonas",
-      color: "#96d8ca",
-      hover_color: "#484d50",
-      inactive: "yes"
+      color: "#96d8ca"
     },
     BRAP: {
       name: "Amapá",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRBA: {
       name: "Bahia",
-      color: "#2db195",
-      hover_color: "#484d50",
-      inactive: "yes"
+      color: "#2db195"
     },
     BRCE: {
       name: "Ceará",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRDF: {
       name: "Distrito Federal",
-      color: "#2db195",
-      hover_color: "#484d50",
+      color: "#278E76",
+      inactive: "no",
       url: "javascript:abrirPopup('popup-df')"
     },
     BRES: {
       name: "Espírito Santo",
-      color: "#96d8ca",
-      hover_color: "#484d50",
-      inactive: "yes"
+      color: "#96d8ca"
     },
     BRGO: {
       name: "Goiás",
-      color: "#2db195",
-      hover_color: "#484d50",
+      color: "#278E76",
+      inactive: "no",
       url: "javascript:abrirPopup('popup-go')"
     },
     BRMA: {
       name: "Maranhão",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRMG: {
       name: "Minas Gerais",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRMS: {
       name: "Mato Grosso do Sul",
-      color: "#2db195",
-      hover_color: "#484d50",
+      color: "#278E76",
+      inactive: "no",
       url: "javascript:abrirPopup('popup-ms')"
     },
     BRMT: {
       name: "Mato Grosso",
-      color: "#2db195",
-      hover_color: "#484d50",
+      color: "#278E76",
+      inactive: "no",
       url: "javascript:abrirPopup('popup-mt')"
     },
     BRPA: {
       name: "Pará",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRPB: {
       name: "Paraíba",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRPE: {
       name: "Pernambuco",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRPI: {
       name: "Piauí",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRPR: {
       name: "Paraná",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRRJ: {
       name: "Rio de Janeiro",
-      color: "#96d8ca",
-      hover_color: "#484d50",
-      inactive: "yes"
+      color: "#96d8ca"
     },
     BRRN: {
       name: "Rio Grande do Norte",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRRO: {
       name: "Rondônia",
-      color: "#96d8ca",
-      hover_color: "#484d50",
-      inactive: "yes"
+      color: "#96d8ca"
     },
     BRRR: {
       name: "Roraima",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRRS: {
       name: "Rio Grande do Sul",
-      color: "#2db195",
-      hover_color: "#484d50",
+      color: "#278E76",
+      inactive: "no",
       url: "javascript:abrirPopup('popup-rs')"
     },
     BRSC: {
       name: "Santa Catarina",
-      color: "#96d8ca",
-      hover_color: "#484d50",
-      inactive: "yes"
+      color: "#96d8ca"
     },
     BRSE: {
       name: "Sergipe",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRSP: {
       name: "São Paulo",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     },
     BRTO: {
       name: "Tocantins",
-      color: "#2db195",
-      hover_color: "#484d50"
+      color: "#2db195"
     }
   },
   locations: {
     "0": {
       lat: "-15.793889",
       lng: "-47.882778",
-      color: "#f69e25",
       name: "Distrito Federal"
     },
     "1": {
       lat: "-16.672222",
       lng: "-49.253889",
-      color: "#f69e25",
       name: "Goiânia"
     },
     "2": {
       lat: "-15.598889",
       lng: "-56.084722",
-      color: "#f69e25",
       name: "Cuiabá"
     },
     "3": {
       lat: "-23.550278",
       lng: "-46.633889",
-      color: "#f69e25",
       name: "São Paulo"
     },
     "4": {
       lat: "-20.442777",
       lng: "-54.646389",
-      color: "#f69e25",
       name: "Campo Grande"
     },
     "5": {
       lat: "-30.033056",
       lng: "-51.23",
-      color: "#f69e25",
       name: "Porto Alegre"
     }
   },
