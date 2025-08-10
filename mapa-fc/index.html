@@ -3,10 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>Mapa FC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Aptos';
+      src: local('Aptos'), local('Aptos Regular'); /* usa a instalada, se existir */
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    
     body {
       margin: 0;
-      background: #c6dec5;
+      background: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -30,12 +39,10 @@
       position: absolute;
       left: 25%;
       bottom: 28%;
-      background: rgba(255, 255, 255, 0.95);
       padding: 10px 14px;
       border-radius: 12px;
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
       font-size: 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -63,14 +70,9 @@
       flex-shrink: 0;
     }
 
-    .quadrado.estado {
+    .quadrado.redes {
       border-radius: 2px;
-      background-color: #2db195;
-    }
-
-    .circulo.redes {
-      border-radius: 50%;
-      background-color: #289b83;
+      background-color: #278E76;
     }
 
     .circulo.municipio {
@@ -83,74 +85,115 @@
       background-color: #405159;
     }
 
+    /* ENTRADA: direita -> centro */
+    @keyframes slideInRight {
+      0%   { transform: translate(calc(-50% + 80px), -50%); opacity: 0; }
+      100% { transform: translate(-50%, -50%);            opacity: 1; }
+    }
+
+    /* SAÍDA: centro -> direita */
+    @keyframes slideOutRight {
+      0%   { transform: translate(-50%, -50%);            opacity: 1; }
+      100% { transform: translate(calc(-50% + 80px), -50%); opacity: 0; }
+    }
+
+    /* Estado padrão do popup (ficará oculto e posicionado no centro) */
     .popup-custom {
-        position: absolute;
-        background-color: #2d3e44;
-        color: white;
-        padding: 20px 24px;
-        border-radius: 16px;
-        max-width: 340px;
-        font-family: 'Segoe UI', sans-serif;
-        font-size: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-        z-index: 9999;
-        display: none;
+      position: absolute;
+      background-color: #2d3e44;
+      color: white;
+      padding: 34px 38px; /* bem mais espaço interno */
+      border-radius: 20px;
+      max-width: 500px; /* largura maior */
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 18px; /* aumenta fonte padrão */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      z-index: 9999;
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%); /* posição final (centro) */
+      opacity: 0;                       /* começa invisível */
+      display: none; /* escondido até abrir */
+    }
+
+    /* Abrindo */
+    .popup-custom.show {
+      display: block;
+      animation: slideInRight 300ms ease-out both;
+    }
+
+    /* Fechando */
+    .popup-custom.hide {
+      animation: slideOutRight 250ms ease-in both;
+    }
+
+    /* Acessibilidade: sem animação se prefer-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .popup-custom.show,
+      .popup-custom.hide {
+        animation: none;
+        opacity: 1;
+      }
     }
 
     .popup-custom h3 {
-        margin: 0;
-        padding-bottom: 4px;
-        font-size: 18px;
-        color: #2db195;
+      margin: 0;
+      padding-bottom: 12px; /* mais espaço abaixo do título */
+      font-size: 28px; /* título bem maior */
+      color: #2db195;
+      font-family: 'Sitka Heading', serif; /* Fonte do título */
     }
 
     .popup-custom p {
-        margin: 0 0 12px 0;
+      margin: 0 0 18px 0;
+      line-height: 1.6; /* espaçamento de leitura confortável */
+      font-family: 'Open Sans', sans-serif;
     }
 
     .popup-custom p:last-of-type {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
 
-
     .popup-custom .close-btn {
-        position: absolute;
-        top: 12px;
-        right: 16px;
-        cursor: pointer;
-        color: #e2e47b;
-        font-weight: bold;
-        font-size: 18px;
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      cursor: pointer;
+      color: #e2e47b;
+      font-weight: bold;
+      font-size: 30px; /* X bem maior */
     }
 
     /* Botão amarelo Saiba Mais */
     .btn-saiba-mais {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px; /* espaço entre texto e seta */
-        background-color: #e2e47b; /* amarelo */
-        color: #2d3e44; /* cor do texto */
-        font-weight: bold;
-        font-size: 14px;
-        padding: 8px 14px;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        text-decoration: none; /* remove sublinhado se for <a> */
-        transition: background-color 0.2s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #e2e47b;
+      color: #2d3e44;
+      font-weight: bold;
+      font-size: 20px; /* aumenta fonte do botão */
+      padding: 14px 24px; /* botão mais largo e alto */
+      border-radius: 28px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease-in-out;
     }
 
     .btn-saiba-mais:hover {
-        background-color: #d4d65f; /* tom mais escuro no hover */
+      background-color: #d4d65f;
     }
 
     .btn-saiba-mais .arrow {
-        font-size: 14px;
-        transition: transform 0.2s ease-in-out;
+      font-size: 20px; /* seta maior */
+      transition: transform 0.2s ease-in-out;
     }
 
     .btn-saiba-mais:hover .arrow {
-        transform: translateX(3px);
+      transform: translateX(3px);
     }
 
     /* tenta pelos IDs oficiais da watermark */
@@ -173,12 +216,11 @@
     }
     
   </style>
-</head>
+  </head>
 <body>
-
   <div id="legenda">
     <div class="item-legenda">
-      <div class="icone circulo redes"></div>
+      <div class="icone quadrado redes"></div>
       <span class="texto">Redes Municipais das Capitais participantes do GA</span>
     </div>
     <div class="item-legenda">
@@ -193,118 +235,128 @@
 
   <div id="map"></div>
 
-<!-- Espírito Santo -->
-<div id="popup-es" class="popup-custom">
-  <span class="close-btn" onclick="fecharPopup('popup-es')">×</span>
-  <h3>Vitória (ES)</h3>
-  <p>Formação Continuada em Vitória (ES) - Estratégias para a implementação de uma política eficaz.</p><br>
-  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
-    Saiba mais <span class="arrow">➜</span>
-  </a>
-</div>
+  <!-- Espírito Santo -->
+  <div id="popup-es" class="popup-custom">
+    <span class="close-btn" onclick="fecharPopup('popup-es')">×</span>
+    <h3>Vitória (ES)</h3>
+    <p>Formação Continuada em Vitória (ES) - Estratégias para a implementação de uma política eficaz.</p><br>
+    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+      Saiba mais <span class="arrow">➜</span>
+    </a>
+  </div>
 
-<!-- Santa Catarina -->
-<div id="popup-sc" class="popup-custom">
-  <span class="close-btn" onclick="fecharPopup('popup-sc')">×</span>
-  <h3>Joinville (SC)</h3>
-  <p>Boas práticas de implementação de Formação Continuada - Como organizar uma formação continuada de professores em uma rede de ensino?</p><br>
-  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
-    Saiba mais <span class="arrow">➜</span>
-  </a>
-</div>
+  <!-- Santa Catarina -->
+  <div id="popup-sc" class="popup-custom">
+    <span class="close-btn" onclick="fecharPopup('popup-sc')">×</span>
+    <h3>Joinville (SC)</h3>
+    <p>Boas práticas de implementação de Formação Continuada - Como organizar uma formação continuada de professores em uma rede de ensino?</p><br>
+    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+      Saiba mais <span class="arrow">➜</span>
+    </a>
+  </div>
 
-<!-- Paraná -->
-<div id="popup-pr" class="popup-custom">
-  <span class="close-btn" onclick="fecharPopup('popup-pr')">×</span>
-  <h3>Paraná</h3>
-  <p>A política de Formação Continuada no estado do Paraná - Formação entre pares mediada por tecnologias.</p><br>
-  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
-    Saiba mais <span class="arrow">➜</span>
-  </a>
-</div>
+  <!-- Paraná -->
+  <div id="popup-pr" class="popup-custom">
+    <span class="close-btn" onclick="fecharPopup('popup-pr')">×</span>
+    <h3>Paraná</h3>
+    <p>A política de Formação Continuada no estado do Paraná - Formação entre pares mediada por tecnologias.</p><br>
+    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+      Saiba mais <span class="arrow">➜</span>
+    </a>
+  </div>
 
-<!-- Ceará -->
-<div id="popup-ce" class="popup-custom">
-  <span class="close-btn" onclick="fecharPopup('popup-ce')">×</span>
-  <h3>Sobral (CE)</h3>
-  <p>A política de formação continuada de Sobral - Foco na prática docente e na aprendizagem dos estudantes.</p><br>
-  <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
-    Saiba mais <span class="arrow">➜</span>
-  </a>
-</div>
+  <!-- Ceará -->
+  <div id="popup-ce" class="popup-custom">
+    <span class="close-btn" onclick="fecharPopup('popup-ce')">×</span>
+    <h3>Sobral (CE)</h3>
+    <p>A política de formação continuada de Sobral - Foco na prática docente e na aprendizagem dos estudantes.</p><br>
+    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+      Saiba mais <span class="arrow">➜</span>
+    </a>
+  </div>
 
   <!-- Scripts do mapa -->
   <script src="mapdata.js"></script>
   <script src="countrymap.js"></script>
 
   <script>
-  function abrirPopup(id) {
-    fecharTodosPopups();
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.display = "block";
-      el.style.left = "50%";
-      el.style.top = "50%";
-      el.style.transform = "translate(-50%, -50%)";
-    }
-  }
+    let cliqueInterno = false;
 
-  function fecharPopup(id) {
-    const el = document.getElementById(id);
-    if (el) el.style.display = "none";
-  }
+    function abrirPopup(id) {
+      cliqueInterno = true;
+      setTimeout(() => (cliqueInterno = false), 0);
 
-  function fecharTodosPopups() {
-    const popups = document.querySelectorAll('.popup-custom');
-    popups.forEach(p => p.style.display = 'none');
-  }
-</script>
-
-<script>
-  let cliqueInterno = false;
-
-  function abrirPopup(id) {
-    cliqueInterno = true;
-    setTimeout(() => cliqueInterno = false, 0); // ← garante reset após execução
-    fecharTodosPopups();
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.display = "block";
-      el.style.left = "50%";
-      el.style.top = "50%";
-      el.style.transform = "translate(-50%, -50%)";
-    }
-  }
-
-  function fecharPopup(id) {
-    const el = document.getElementById(id);
-    if (el) el.style.display = "none";
-  }
-
-  function fecharTodosPopups() {
-    const popups = document.querySelectorAll('.popup-custom');
-    popups.forEach(p => p.style.display = 'none');
-  }
-
-  document.addEventListener("click", function (event) {
-    const isInsidePopup = event.target.closest(".popup-custom");
-    const isLegenda = event.target.closest("#legenda");
-
-    if (!cliqueInterno && !isInsidePopup && !isLegenda) {
+      // fecha qualquer outro aberto (com saída animada)
       fecharTodosPopups();
+
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      // garante estado limpo antes de abrir
+      el.classList.remove('hide');
+      el.style.display = 'block';
+
+      // reinicia a animação de entrada
+      el.classList.remove('show');
+      void el.offsetWidth; // reflow
+      el.classList.add('show');
     }
-  });
-</script>
 
-<script>
-  window.addEventListener('load', function () {
-    // remover por IDs comuns
-    ['simplemaps_watermark', 'simplemaps_watermark_link']
-      .forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
+    function fecharPopup(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-    // remover o link do trial (não remove pais com outros nós)
-    document.querySelectorAll('a[title="For evaluation use only."]').forEach(el => el.remove());
-  });
-</script>
-</body>
+      // se já está fechando, ignora
+      if (el.classList.contains('hide')) return;
+
+      // remove classe de abertura, aplica saída
+      el.classList.remove('show');
+      el.classList.add('hide');
+
+      // quando terminar a animação, esconde de vez e limpa classe
+      const onEnd = (e) => {
+        if (e.target !== el) return;
+        el.style.display = 'none';
+        el.classList.remove('hide');
+        el.removeEventListener('animationend', onEnd);
+      };
+      el.addEventListener('animationend', onEnd);
+    }
+
+    function fecharTodosPopups() {
+      document.querySelectorAll('.popup-custom').forEach((p) => {
+        if (p.style.display !== 'block') return; // já fechado
+        p.classList.remove('show');
+        p.classList.add('hide');
+        const onEnd = (e) => {
+          if (e.target !== p) return;
+          p.style.display = 'none';
+          p.classList.remove('hide');
+          p.removeEventListener('animationend', onEnd);
+        };
+        p.addEventListener('animationend', onEnd);
+      });
+    }
+
+    // Fecha ao clicar fora
+    document.addEventListener('click', function (event) {
+      const isInsidePopup = event.target.closest('.popup-custom');
+      const isLegenda = event.target.closest('#legenda');
+      if (!cliqueInterno && !isInsidePopup && !isLegenda) {
+        fecharTodosPopups();
+      }
+    });
+  </script>
+
+  <script>
+    window.addEventListener('load', function () {
+      // remover por IDs comuns
+      ['simplemaps_watermark', 'simplemaps_watermark_link']
+        .forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
+
+      // remover o link do trial (não remove pais com outros nós)
+      document.querySelectorAll('a[title="For evaluation use only."]').forEach(el => el.remove());
+    });
+  </script>
+  </body>
 </html>
