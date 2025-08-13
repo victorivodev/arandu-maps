@@ -24,7 +24,9 @@
       width: 50%;
       max-width: 1000px;
       height: 80vh;
-      margin-top: 20px;
+      margin-top: 80px;
+      transform: scale(0.8); /* 0.8 = 80% do tamanho original */
+      transform-origin: top center; /* mantém alinhado ao topo e centralizado */
     }
 
     /* Oculta marca d'água do SimpleMaps */
@@ -36,15 +38,15 @@
     /* Legenda personalizada */
     #legenda {
       position: absolute;
-      left: 25%;
-      bottom: 28%;
+      left: 30%;
+      bottom: 30%;
       padding: 10px 14px;
       border-radius: 12px;
       font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       z-index: 10;
     }
 
@@ -100,7 +102,7 @@
       border-radius: 20px;
       max-width: 500px; /* largura maior */
       font-family: 'Segoe UI', sans-serif;
-      font-size: 18px; /* aumenta fonte padrão */
+      font-size: 16px; /* aumenta fonte padrão */
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       z-index: 9999;
       display: none;
@@ -135,7 +137,7 @@
     .popup-custom h3 {
       margin: 0;
       padding-bottom: 12px; /* mais espaço abaixo do título */
-      font-size: 28px; /* título bem maior */
+      font-size: 24px; /* título bem maior */
       color: #2db195;
       font-family: 'Sitka Heading', serif; /* Fonte do título */
     }

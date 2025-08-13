@@ -25,7 +25,9 @@
       width: 50%;
       max-width: 1000px;
       height: 80vh;
-      margin-top: 20px;
+      margin-top: 80px;
+      transform: scale(0.8); /* 0.8 = 80% do tamanho original */
+      transform-origin: top center; /* mantém alinhado ao topo e centralizado */
     }
 
     /* Oculta marca d'água do SimpleMaps */
@@ -37,12 +39,12 @@
     /* Legenda personalizada */
     #legenda {
       position: absolute;
-      left: 25%;
-      bottom: 28%;
+      left: 30%;
+      bottom: 30%;
       padding: 10px 14px;
       border-radius: 12px;
       font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -106,7 +108,7 @@
       border-radius: 20px;
       max-width: 500px; /* largura maior */
       font-family: 'Segoe UI', sans-serif;
-      font-size: 18px; /* aumenta fonte padrão */
+      font-size: 16px; /* aumenta fonte padrão */
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       z-index: 9999;
       display: none;
@@ -141,7 +143,7 @@
     .popup-custom h3 {
       margin: 0;
       padding-bottom: 12px; /* mais espaço abaixo do título */
-      font-size: 28px; /* título bem maior */
+      font-size: 24px; /* título bem maior */
       color: #2db195;
       font-family: 'Sitka Heading', serif; /* Fonte do título */
     }
@@ -174,7 +176,7 @@
       background-color: #e2e47b;
       color: #2d3e44;
       font-weight: bold;
-      font-size: 20px; /* aumenta fonte do botão */
+      font-size: 16px; /* aumenta fonte do botão */
       padding: 14px 24px; /* botão mais largo e alto */
       border-radius: 28px;
       border: none;
@@ -240,7 +242,7 @@
     <span class="close-btn" onclick="fecharPopup('popup-es')">×</span>
     <h3>Vitória (ES)</h3>
     <p>Formação Continuada em Vitória (ES) - Estratégias para a implementação de uma política eficaz.</p><br>
-    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    <a href="https://2609ff94-e92b-4f65-b592-595a0f876360.usrfiles.com/ugd/2609ff_bf712cd5a8334ef48addc61366eb218b.pdf" class="btn-saiba-mais" title="Saiba mais sobre Vitória (ES)" target="_blank" rel="noopener noreferrer">
       Saiba mais <span class="arrow">➜</span>
     </a>
   </div>
@@ -250,7 +252,7 @@
     <span class="close-btn" onclick="fecharPopup('popup-sc')">×</span>
     <h3>Joinville (SC)</h3>
     <p>Boas práticas de implementação de Formação Continuada - Como organizar uma formação continuada de professores em uma rede de ensino?</p><br>
-    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    <a href="https://2609ff94-e92b-4f65-b592-595a0f876360.usrfiles.com/ugd/2609ff_b147b960879c4bfd82ac87eccf5b624d.pdf" class="btn-saiba-mais" title="Saiba mais sobre Joinville (SC)" target="_blank" rel="noopener noreferrer">
       Saiba mais <span class="arrow">➜</span>
     </a>
   </div>
@@ -260,7 +262,7 @@
     <span class="close-btn" onclick="fecharPopup('popup-pr')">×</span>
     <h3>Paraná</h3>
     <p>A política de Formação Continuada no estado do Paraná - Formação entre pares mediada por tecnologias.</p><br>
-    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    <a href="https://2609ff94-e92b-4f65-b592-595a0f876360.usrfiles.com/ugd/2609ff_7a7ec533da0641c5999591ca9ce879a4.pdf " class="btn-saiba-mais" title="Saiba mais sobre Paraná" target="_blank" rel="noopener noreferrer">
       Saiba mais <span class="arrow">➜</span>
     </a>
   </div>
@@ -270,7 +272,7 @@
     <span class="close-btn" onclick="fecharPopup('popup-ce')">×</span>
     <h3>Sobral (CE)</h3>
     <p>A política de formação continuada de Sobral - Foco na prática docente e na aprendizagem dos estudantes.</p><br>
-    <a href="#" class="btn-saiba-mais" onclick="event.preventDefault();" title="Link disponível em breve">
+    <a href="https://2609ff94-e92b-4f65-b592-595a0f876360.usrfiles.com/ugd/2609ff_f510316fe939415988661cf5db8c4cab.pdf" class="btn-saiba-mais" title="Saiba mais sobre Sobral (CE)" target="_blank" rel="noopener noreferrer">
       Saiba mais <span class="arrow">➜</span>
     </a>
   </div>
